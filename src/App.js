@@ -1,7 +1,6 @@
 import './App.css';
 import {useAsyncList} from "react-stately";
 import Table from "./Table";
-import {useEffect} from "react";
 
 function App() {
     const list = useAsyncList({
@@ -20,18 +19,10 @@ function App() {
         }
     });
 
-    function reload() {
-        list.reload();
-    }
-
-    useEffect(() => {
-        console.log("list", list);
-    }, [list])
-
     return (
         <div className="App">
             <Table list={list}/>
-            <button onClick={reload}>reload</button>
+            <button onClick={() => list.reload()}>reload</button>
         </div>
     );
 }
